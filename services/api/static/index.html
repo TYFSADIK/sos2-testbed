@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Space Surveillance Testbed</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.123.0/Build/Cesium/Widgets/widgets.css">
+<script src="https://cdn.jsdelivr.net/npm/cesium@1.123.0/Build/Cesium/Cesium.js"></script>
+<style>
+  :root { --bg:#0e1116; --panel:#161b22; --line:#2a313c; --text:#d6dbe1; --dim:#8b95a3; --acc:#5ea2ff; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--text); font:13px/1.45 system-ui, sans-serif; }
+  #wrap { display:flex; height:100%; } #globe { flex:1; position:relative; }
+  #side { width:360px; background:var(--panel); border-left:1px solid var(--line); overflow:auto; padding:12px 14px; box-sizing:border-box; }
+  h1 { font-size:15px; margin:0; } h2 { font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--dim); margin:16px 0 6px; }
+  .dim { color:var(--dim); } .row { display:flex; justify-content:space-between; gap:8px; }
+  .big { font:600 20px ui-monospace, monospace; }
+  input, select, button { background:#0f1318; color:var(--text); border:1px solid var(--line); padding:5px 7px; font:inherit; }
+  input { width:100%; box-sizing:border-box; } button { cursor:pointer; } button:hover { border-color:var(--acc); }
+  table { width:100%; border-collapse:collapse; font-size:12px; } td, th { padding:3px 4px; border-bottom:1px solid var(--line); text-align:left; }
+  tr.click:hover { background:#1d2530; cursor:pointer; }
+  .legend span { display:inline-flex; align-items:center; gap:4px; margin-right:9px; } .dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .card { border:1px solid var(--line); padding:8px; margin-top:6px; background:#11161d; }
+  .tabs button.on { border-color:var(--acc); color:#fff; }
+  .cesium-viewer-bottom { display:none; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="globe"></div>
+  <aside id="side">
+    <h1>Space Surveillance Testbed</h1>
+    <div class="dim">Public orbital data: CelesTrak GP, SATCAT; SGP4</div>
+    <div class="row" style="margin-top:10px">
+      <div><div class="dim">Objects</div><div class="big" id="n">-</div></div>
+      <div><div class="dim">Time (UTC)</div><div class="big" id="clock">-</div></div>
+    </div>
+    <h2>Colour by</h2>
+    <div class="tabs"><button data-c="regime" class="on">Orbit</button> <button data-c="type">Object type</button> <button data-c="age">Data age</button></div>
+    <div class="legend dim" id="legend" style="margin-top:6px"></div>
+    <h2>Find</h2>
+    <input id="q" placeholder="Name or catalogue number, e.g. ANIK F2 or 25544">
+    <div id="results"></div>
+    <h2>Selected</h2>
+    <div id="sel" class="dim">Click an object or search.</div>
+    <h2>Close approaches</h2>
+    <div id="conjmeta" class="dim"></div>
+    <table id="conj"></table>
+    <h2>Canadian GEO satellites</h2>
+    <table id="geo"></table>
+  </aside>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

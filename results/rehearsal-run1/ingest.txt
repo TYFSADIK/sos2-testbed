@@ -1,0 +1,5 @@
+satcat rows 71424
+snapshot 20261124T154500Z: 5162 new element sets
+snapshot 20261124T164350Z: 16 new element sets
+snapshot 20261124T174828Z: 16148 new element sets
+2026-11-24T17:48:28+00:00 {'catalogue': 21310, 'geo': 1129, 'manoeuvre_rows': 0, 'conjunctions': {'run_id': 1, 'runtime_s': 770.2, 'steps': 30240, 'objects': 21310, 'primaries': 16901, 'kd_pairs': 428521718, 'linear_kept': 4528066, 'candidate_pairs': 907063, 'conjunctions': 808531, 'colocated': 491}}

@@ -1,0 +1,44 @@
+# Space surveillance testbed: PostgreSQL/PostGIS, ingest, API + 3D viewer, Grafana.
+name: sos
+services:
+  postgis:
+    image: imresamu/postgis:16-3.4
+    environment: {POSTGRES_USER: sos, POSTGRES_PASSWORD: sos, POSTGRES_DB: sos}
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck: {test: ["CMD", "pg_isready", "-U", "sos"], interval: 3s, retries: 40}
+    restart: unless-stopped
+  ingest:
+    build: {context: .., dockerfile: stacks/Dockerfile, args: {BASE: "${BASE:-python:3.12-slim}"}}
+    image: sos-py:latest
+    command: ["python", "services/ingest/main.py"]
+    environment:
+      DATABASE_URL: postgresql://sos:sos@postgis/sos
+      MODE: ${MODE:-files}
+      CONJ_DAYS: ${CONJ_DAYS:-1}
+      UNCERTAINTY: /app/results/uncertainty.json
+    volumes: ["../data/raw:/data/raw:ro", "../results:/app/results"]
+    depends_on: {postgis: {condition: service_healthy}}
+    restart: unless-stopped
+  api:
+    image: sos-py:latest
+    command: ["uvicorn", "services.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "warning"]
+    environment: {DATABASE_URL: "postgresql://sos:sos@postgis/sos", UNCERTAINTY: /app/results/uncertainty.json}
+    volumes: ["../results:/app/results:ro"]
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on: [ingest]
+    restart: unless-stopped
+  grafana:
+    image: grafana/grafana:11.3.0
+    environment: {GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_PASSWORD:-change-me}", GF_AUTH_ANONYMOUS_ENABLED: "true", GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer}
+    volumes: ["./grafana/provisioning:/etc/grafana/provisioning:ro", "./grafana/dashboards:/var/lib/grafana/dashboards:ro"]
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on: {postgis: {condition: service_healthy}}
+    restart: unless-stopped
+  tools:
+    image: sos-py:latest
+    profiles: [tools]
+    command: ["sleep", "infinity"]
+    environment: {DATABASE_URL: "postgresql://sos:sos@postgis/sos"}
+    volumes: ["../data:/app/data", "../results:/app/results"]
+volumes:
+  pgdata: {}

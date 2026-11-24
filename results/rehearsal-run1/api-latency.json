@@ -1,0 +1,1 @@
+{"positions_all_objects": {"n": 30, "median_ms": 84.7, "p95_ms": 100.6}, "object_detail": {"n": 30, "median_ms": 2.2, "p95_ms": 3.0}, "conjunctions_top50": {"n": 30, "median_ms": 267.8, "p95_ms": 299.2}, "search": {"n": 30, "median_ms": 13.7, "p95_ms": 19.4}}

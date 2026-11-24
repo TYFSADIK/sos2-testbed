@@ -1,0 +1,40 @@
+  ],
+  "12-13": [
+   17,
+   18
+  ],
+  "13-14": [
+   0,
+   0
+  ],
+  "14-15": [
+   0,
+   0
+  ],
+  "15-16": [
+   0,
+   2
+  ],
+  "16-17": [
+   0,
+   0
+  ],
+  "17-18": [
+   0,
+   0
+  ]
+ },
+ "astrometric_error_arcsec_median": 1.21,
+ "astrometric_error_arcsec_p95": 73.74249999999999,
+ "correct_correlation": 95,
+ "wrong_correlation": 0,
+ "uncorrelated_catalogued": 1,
+ "uct_injected": 30,
+ "uct_detected_and_flagged": 29,
+ "manoeuvre_injected": 29,
+ "manoeuvre_flagged": 28,
+ "false_manoeuvre_flags": 3,
+ "false_streaks": 2,
+ "false_uct_alarms": 2,
+ "operator_truth_objects": 24
+}

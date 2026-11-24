@@ -1,0 +1,20 @@
+catalogue objects 21310
+LEO  samples 145769  median 11.475 km  p95 92.951 km  median age 1.34 d  fit {'R': [0.1555675990043652, 0.1315609939517283], 'I': [1.20536740827139, 2.4823417781109263, 7.443851639565551], 'C': [0.14651479205138018, 0.0787135830911017]}
+MEO  samples   2639  median 1.115 km  p95 3.197 km  median age 0.73 d  fit {'R': [0.23247560220121383, 0.016850872738470954], 'I': [1.0038208066673522, 0.9450299122145072, 0.0], 'C': [0.1517414128894882, 0.07499825614002552]}
+HEO  samples     65  median 2.543 km  p95 5.389 km  median age -1.58 d  fit {'R': [0.9408219269785059, 0.40022775466535465], 'I': [1.8697888466392523, 0.3285580906880715], 'C': [0.8979990389858382, 0.0]}
+GEO  samples   2366  median 5.297 km  p95 26.609 km  median age -0.57 d  fit {'R': [0.719675636602203, 0.16934732309896552], 'I': [1.7873549030766223, 2.2973379702786985, 0.0], 'C': [0.6067675050691762, 1.4245804349859608]}
+ISS  samples    676  median 12.728 km  p95 83.469 km  median age 7.08 d  fit {'R': [0.026902369112223337, 0.03512964940090086], 'I': [4.522770578045867, 0.0, 0.9317525142155269], 'C': [0.08849816735307496, 0.19570060556613916]}
+ISS age -0.413 d: total 0.241 km (in-track 0.197 )
+ISS age 0.83 d: total 0.587 km (in-track -0.471 )
+ISS age 2.074 d: total 0.809 km (in-track -0.775 )
+ISS age 3.317 d: total 1.327 km (in-track -1.189 )
+ISS age 4.562 d: total 1.796 km (in-track 1.793 )
+ISS age 5.804 d: total 7.205 km (in-track 7.141 )
+ISS age 7.049 d: total 12.605 km (in-track 12.599 )
+ISS age 8.293 d: total 22.292 km (in-track 22.233 )
+ISS age 9.536 d: total 33.647 km (in-track 33.617 )
+ISS age 10.78 d: total 46.907 km (in-track 46.895 )
+ISS age 12.025 d: total 59.175 km (in-track 59.124 )
+ISS age 13.269 d: total 76.736 km (in-track 76.734 )
+ISS age 14.514 d: total 91.907 km (in-track 91.859 )
+{"cpf": {"objects": 186, "samples": 2418}, "eumetsat": {"objects": 10, "samples": 130}, "gps": {"objects": 32, "samples": 416}, "intelsat": {"objects": 121, "samples": 1573}, "ses": {"objects": 68, "samples": 884}, "starlink": {"objects": 11172, "samples": 145236}, "telesat": {"objects": 14, "samples": 182}} skipped (designator mismatch): {'starlink': 26}

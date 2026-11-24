@@ -1,0 +1,625 @@
+{
+ "title": "Space Surveillance: Catalogue Health",
+ "uid": "sos-health",
+ "schemaVersion": 39,
+ "time": {
+  "from": "now-7d",
+  "to": "now"
+ },
+ "refresh": "1m",
+ "panels": [
+  {
+   "type": "stat",
+   "title": "Objects in catalogue",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT count(*) AS objects FROM latest_gp",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "stat",
+   "title": "Element sets stored (history)",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT count(*) AS sets FROM gp",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 4,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "stat",
+   "title": "Conjunctions under 5 km (latest run)",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT count(*) FROM conjunction WHERE run_id=(SELECT max(id) FROM conjunction_run) AND NOT colocated",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 8,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "stat",
+   "title": "Probability over 1 in 10,000",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT count(*) FROM conjunction WHERE run_id=(SELECT max(id) FROM conjunction_run) AND pc > 1e-4",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 12,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "stat",
+   "title": "Manoeuvres detected",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT count(*) FROM manoeuvre",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 16,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "stat",
+   "title": "Median data age (days)",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT round((percentile_cont(0.5) WITHIN GROUP (ORDER BY extract(epoch FROM now()-epoch)/86400))::numeric,2) FROM latest_gp",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 20,
+    "y": 0,
+    "w": 4,
+    "h": 4
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5ea2ff"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "#5ea2ff",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ]
+    }
+   }
+  },
+  {
+   "type": "barchart",
+   "title": "Objects by orbit regime",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT regime, count(*) AS objects FROM latest_gp GROUP BY 1 ORDER BY 2 DESC",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "options": {
+    "xField": "regime",
+    "showValue": "always"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 4,
+    "w": 8,
+    "h": 8
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": []
+   }
+  },
+  {
+   "type": "barchart",
+   "title": "Data freshness: median element-set age by regime (days)",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT regime, round((percentile_cont(0.5) WITHIN GROUP (ORDER BY extract(epoch FROM now()-epoch)/86400))::numeric,2) AS median_age_days, round((percentile_cont(0.9) WITHIN GROUP (ORDER BY extract(epoch FROM now()-epoch)/86400))::numeric,2) AS p90_age_days FROM latest_gp GROUP BY 1 ORDER BY 1",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "options": {
+    "xField": "regime",
+    "showValue": "always"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 4,
+    "w": 8,
+    "h": 8
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": []
+   }
+  },
+  {
+   "type": "barchart",
+   "title": "GEO belt: what objects are doing",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT state, count(*) AS objects FROM geo_state WHERE snapshot=(SELECT max(snapshot) FROM geo_state) GROUP BY 1 ORDER BY 2 DESC",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "options": {
+    "xField": "state",
+    "showValue": "always"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 4,
+    "w": 8,
+    "h": 8
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": []
+   }
+  },
+  {
+   "type": "table",
+   "title": "Highest collision probability (latest screening run)",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT sa.name AS object_a, sb.name AS object_b, to_char(c.tca,'MM-DD HH24:MI') AS tca_utc, round((c.miss_km*1000)::numeric) AS miss_m,\n round(c.rel_speed_kms::numeric,2) AS rel_kms, c.pc AS probability FROM conjunction c LEFT JOIN satcat sa ON sa.norad=c.a LEFT JOIN satcat sb ON sb.norad=c.b\n WHERE c.run_id=(SELECT max(id) FROM conjunction_run) AND NOT c.colocated ORDER BY c.pc DESC NULLS LAST LIMIT 12",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 0,
+    "y": 12,
+    "w": 12,
+    "h": 10
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   }
+  },
+  {
+   "type": "table",
+   "title": "Canadian GEO satellites",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT name, round(lon::numeric,2) AS lon, round(drift_deg_day::numeric,3) AS drift_deg_day, round(inc::numeric,2) AS inc, state FROM geo_state WHERE snapshot=(SELECT max(snapshot) FROM geo_state) AND owner='CA' ORDER BY lon",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 12,
+    "y": 12,
+    "w": 12,
+    "h": 10
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   }
+  },
+  {
+   "type": "geomap",
+   "title": "Where the 5,000 highest-probability close approaches happen",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT ST_Y(geom::geometry) AS latitude, ST_X(geom::geometry) AS longitude, miss_km FROM conjunction WHERE run_id=(SELECT max(id) FROM conjunction_run) AND NOT colocated ORDER BY pc DESC NULLS LAST LIMIT 5000",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "options": {
+    "view": {
+     "id": "zero",
+     "zoom": 1
+    },
+    "layers": [
+     {
+      "type": "markers",
+      "config": {
+       "style": {
+        "size": {
+         "fixed": 3
+        },
+        "color": {
+         "fixed": "orange"
+        }
+       }
+      },
+      "location": {
+       "mode": "coords",
+       "latitude": "latitude",
+       "longitude": "longitude"
+      }
+     }
+    ],
+    "basemap": {
+     "type": "xyz",
+     "name": "OpenStreetMap",
+     "config": {
+      "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "attribution": "(c) OpenStreetMap contributors"
+     }
+    }
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 22,
+    "w": 12,
+    "h": 10
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   }
+  },
+  {
+   "type": "table",
+   "title": "Ingest log",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT to_char(finished,'MM-DD HH24:MI') AS finished, source, status, rows, new_rows, left(message,60) AS message FROM fetch_log ORDER BY id DESC LIMIT 14",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 12,
+    "y": 22,
+    "w": 12,
+    "h": 10
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   }
+  },
+  {
+   "type": "table",
+   "title": "Manoeuvres detected from element-set history",
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "grafana-postgresql-datasource",
+      "uid": "sos-pg"
+     },
+     "rawSql": "SELECT m.norad, l.name, m.regime, to_char(m.epoch_after,'MM-DD HH24:MI') AS after, round(m.d_sma_km::numeric,2) AS d_sma_km, round(m.d_inc_deg::numeric,4) AS d_inc_deg FROM manoeuvre m LEFT JOIN latest_gp l USING (norad) ORDER BY m.epoch_after DESC LIMIT 15",
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code"
+    }
+   ],
+   "gridPos": {
+    "x": 0,
+    "y": 32,
+    "w": 24,
+    "h": 8
+   },
+   "datasource": {
+    "type": "grafana-postgresql-datasource",
+    "uid": "sos-pg"
+   }
+  }
+ ],
+ "tags": [
+  "sos"
+ ]
+}
